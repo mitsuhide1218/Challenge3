@@ -1,0 +1,36 @@
+<h1>User info</h1>
+
+<% if @user.errors.any? %>
+	  <div id="error_explanation" class="alert alert-danger">
+	  	<h4><%= @user.errors.count %>件のerrorが発生しました。</h4>
+	    <ul>
+	      <% @user.errors.full_messages.each do |message| %>
+	        <li><%= message %></li>
+			<% end %>
+        </ul>
+        </div>
+<% end %>
+
+<div class="table table-striped">
+<%= form_for(@user) do |t| %>
+
+			<h2>Name</h2>
+				<%= t.text_field :name %>
+			<h3>Introduction</h3>
+				<%= t.text_area :introduction %>
+			<h4>Image</h4>
+				<%= t.attachment_field :profile_image %>
+	<br><%= t.submit 'Update User', class: 'btn btn-primary' %>
+
+	<% if @user.errors.any? %>
+	  <div id="error_explanation" class="alert alert-danger">
+	    <ul>
+	      <% @user.errors.full_messages.each do |message| %>
+	        <li><%= message %></li>
+	      <% end %>
+	    </ul>
+	  </div>
+	<% end %>
+
+<% end %>
+</div>
